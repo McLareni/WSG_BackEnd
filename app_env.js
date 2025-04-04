@@ -5,8 +5,13 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const admin = require("firebase-admin");
 
-// Ініціалізація Firebase Admin SDK
-const serviceAccount = require("./wsg-room-firebase-adminsdk-fbsvc-e37cd765ac.json");
+// Ініціалізація Firebase Admin SDK через змінні середовища
+const serviceAccount = {
+  projectId: process.env.FIREBASE_PROJECT_ID,
+  clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+  privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'), // виправлення формату приватного ключа
+};
+
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
 });
@@ -51,7 +56,6 @@ const validateRegisterData = (data) => {
   if (!data.email || !/^\S+@\S+\.\S+$/.test(data.email)) errors.email = "Invalid email";
   if (!data.imie || data.imie.length < 2) errors.imie = "Name too short";
   if (!data.nazwisko || data.nazwisko.length < 2) errors.nazwisko = "Surname too short";
-  //if (!data.nrAlbumu || !/^\d+$/.test(data.nrAlbumu)) errors.nrAlbumu = "Invalid album number";
   if (!data.haslo || data.haslo.length < 6) errors.haslo = "Password must be at least 6 characters";
   if (data.haslo !== data.powtorzHaslo) errors.powtorzHaslo = "Passwords do not match";
 
