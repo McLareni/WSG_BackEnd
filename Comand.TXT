@@ -1,0 +1,27 @@
+curl -X POST http://localhost:3000/refresh   -H "Content-Type: application/json"   -d '{
+        "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJhYTIxNjk2OS1hODQzLTRmZmItYTI2Yi1mMGIyYWYyNWY0YjciLCJyb2xlIjoic3R1ZGVudCIsImlhdCI6MTc0NDM4NzEyMywiZXhwIjoxNzQ0OTkxOTIzfQ.iF9epiJZCR3ezvoM-kzapFgHLnzi0_0HKJd6mW_kHgU"
+      }'
+{"message":"Access token refreshed successfully","accessToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJhYTIxNjk2OS1hODQzLTRmZmItYTI2Yi1mMGIyYWYyNWY0YjciLCJyb2xlIjoic3R1ZGVudCIsImlhdCI6MTc0NDM4NzE0NiwiZXhwIjoxNzQ0Mzg4MDQ2fQ.aoQPBxjjZUoDRfBTLBe0CHLL4M_sbDptBC1Ntgg6E6A"}yuriy@Y-Home-PC:~$ 
+
+Тупо перевірка механізму обміну рефреш токену на на ассес токену
+
+
+curl -X POST http://localhost:3000/login   -H "Content-Type: application/json"   -d '{
+        "email": "test@example.com",                                                                                                                                                                                                             
+        "password": "password123"
+      }'
+
+
+Команда для логування
+
+yuriy@Y-Home-PC:~$ curl -X POST http://localhost:3000/register   -H "Content-Type: application/json"   -d '{
+        "email": "test@example.com",
+        "name": "John",
+        "surname": "Doe",
+        "nr_albumu": "123456", якщо числа є , то автоматично роль учень , якщо числе нема , автоматично роль вчитель , якого треба підтвердити інший вчитель 
+        "password": "password123",
+        "confirm_password": "password123"
+      }'
+
+
+Команда для реєстрації 
